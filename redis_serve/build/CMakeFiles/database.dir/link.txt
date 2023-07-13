@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../lib/libdatabase.a CMakeFiles/database.dir/src/AVL.cpp.o CMakeFiles/database.dir/src/hashtable.cpp.o CMakeFiles/database.dir/src/zset.cpp.o
+/usr/bin/ranlib ../lib/libdatabase.a

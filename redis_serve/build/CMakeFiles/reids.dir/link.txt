@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../lib/libreids.a CMakeFiles/reids.dir/src/AVL.cpp.o CMakeFiles/reids.dir/src/hashtable.cpp.o CMakeFiles/reids.dir/src/zset.cpp.o
+/usr/bin/ranlib ../lib/libreids.a

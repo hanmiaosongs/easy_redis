@@ -1,0 +1,3 @@
+/home/error/viscode/redis_serve/build/CMakeFiles/reids.dir
+/home/error/viscode/redis_serve/build/CMakeFiles/edit_cache.dir
+/home/error/viscode/redis_serve/build/CMakeFiles/rebuild_cache.dir
