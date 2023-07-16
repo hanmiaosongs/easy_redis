@@ -94,18 +94,22 @@ bool cmp(H_node* lhn, H_node* rhn){
 
 uint32_t get_cmds(uint8_t* data, uint32_t len, std::vector<std::string> &cmds){
     char a[k_max_msg + 1]; uint32_t cmd_len, nstr;
-    if(len < 4) return false;
+    printf("*%u*", len);
+    if(len < 4) return -1;
     memcpy(&nstr, data, 4);
     len -= 4; data += 4;
     for(int i = 0; i < nstr; i++){
         memcpy(&cmd_len, data, 4);
+        printf("**%u**", cmd_len);
         if(len < 4 + cmd_len) return -1;
         memcpy(&a, &data[4], cmd_len);
         a[cmd_len] = '\0';
         cmds.emplace_back(a);
         len -= cmd_len + 4;
         data += cmd_len + 4;
+        printf("%s  ", a);
     }
+    printf("\n");
     if(len) return -1;
     return 0;
 }
@@ -309,7 +313,7 @@ static int32_t do_zadd(std::vector<std::string> &cmds, std::string &out){
             return -1;
         }
     }
-    zset_add(entry->zset, (char*)cmds[2].data(), cmds[3].size(), score);
+    zset_add(entry->zset, (char*)cmds[2].data(), cmds[2].size(), score);
     out_str(out, "ok");
     return 0;
 }
@@ -385,32 +389,32 @@ static bool cmd_is(std::string &s, const char* cmd){
 static int32_t do_one_request(uint8_t* data, uint32_t len, std::string &out){
     std::vector<std::string> cmds;
     if(get_cmds(data, len, cmds)){
-        std::string res = "cmd error please try again.";
+        std::string res = "cmd error please try again!";
         out_str(out, res);
         return -1;
     }
-    if(cmd_is(cmds[0], "set") == 0){
+    if(cmd_is(cmds[0], "set") && cmds.size() == 3){
         if(do_set(cmds, out)) return -1;
     }
-    else if(cmd_is(cmds[0], "get") == 0){
+    else if(cmd_is(cmds[0], "get") && cmds.size() == 2){
         if(do_get(cmds, out)) return -1;
     }
-    else if(cmd_is(cmds[0], "del") == 0){
+    else if(cmd_is(cmds[0], "del") && cmds.size() == 2){
         if(do_del(cmds, out)) return -1;
     }
-    else if(cmd_is(cmds[0], "zrem")){
+    else if(cmd_is(cmds[0], "zrem") && cmds.size() == 3){
         if(do_zrem(out, cmds)) return -1;
     }
-    else if(cmd_is(cmds[0], "zquery")){
+    else if(cmd_is(cmds[0], "zquery") && cmds.size() == 6){
         if(do_zquery(cmds, out)) return -1;
     }
-    else if(cmd_is(cmds[0], "zadd")){
+    else if(cmd_is(cmds[0], "zadd") && cmds.size() == 4){
         if(do_zadd(cmds, out)) return -1;
     }
-    else if(cmd_is(cmds[0], "zscore")){
+    else if(cmd_is(cmds[0], "zscore") && cmds.size() == 3){
         if(do_zscore(cmds, out)) return -1;
     }
-    else if(cmd_is(cmds[0], "keys")){
+    else if(cmd_is(cmds[0], "keys") && cmds.size() == 1){
         do_keys(out);
     }
     else{
