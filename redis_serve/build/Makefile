@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/error/viscode/redis_serve
+CMAKE_SOURCE_DIR = /home/error/gits/easy_redis/redis_serve
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/error/viscode/redis_serve/build
+CMAKE_BINARY_DIR = /home/error/gits/easy_redis/redis_serve/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/error/viscode/redis_serve/build/CMakeFiles /home/error/viscode/redis_serve/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/error/gits/easy_redis/redis_serve/build/CMakeFiles /home/error/gits/easy_redis/redis_serve/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/error/viscode/redis_serve/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/error/gits/easy_redis/redis_serve/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -117,24 +117,24 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named reids
+# Target rules for targets named app
 
 # Build rule for target.
-reids: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 reids
-.PHONY : reids
+app: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 app
+.PHONY : app
 
 # fast build rule for target.
-reids/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/reids.dir/build.make CMakeFiles/reids.dir/build
-.PHONY : reids/fast
+app/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/build
+.PHONY : app/fast
 
 src/AVL.o: src/AVL.cpp.o
 .PHONY : src/AVL.o
 
 # target to build an object file
 src/AVL.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/reids.dir/build.make CMakeFiles/reids.dir/src/AVL.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/AVL.cpp.o
 .PHONY : src/AVL.cpp.o
 
 src/AVL.i: src/AVL.cpp.i
@@ -142,7 +142,7 @@ src/AVL.i: src/AVL.cpp.i
 
 # target to preprocess a source file
 src/AVL.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/reids.dir/build.make CMakeFiles/reids.dir/src/AVL.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/AVL.cpp.i
 .PHONY : src/AVL.cpp.i
 
 src/AVL.s: src/AVL.cpp.s
@@ -150,7 +150,7 @@ src/AVL.s: src/AVL.cpp.s
 
 # target to generate assembly for a file
 src/AVL.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/reids.dir/build.make CMakeFiles/reids.dir/src/AVL.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/AVL.cpp.s
 .PHONY : src/AVL.cpp.s
 
 src/hashtable.o: src/hashtable.cpp.o
@@ -158,7 +158,7 @@ src/hashtable.o: src/hashtable.cpp.o
 
 # target to build an object file
 src/hashtable.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/reids.dir/build.make CMakeFiles/reids.dir/src/hashtable.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/hashtable.cpp.o
 .PHONY : src/hashtable.cpp.o
 
 src/hashtable.i: src/hashtable.cpp.i
@@ -166,7 +166,7 @@ src/hashtable.i: src/hashtable.cpp.i
 
 # target to preprocess a source file
 src/hashtable.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/reids.dir/build.make CMakeFiles/reids.dir/src/hashtable.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/hashtable.cpp.i
 .PHONY : src/hashtable.cpp.i
 
 src/hashtable.s: src/hashtable.cpp.s
@@ -174,15 +174,39 @@ src/hashtable.s: src/hashtable.cpp.s
 
 # target to generate assembly for a file
 src/hashtable.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/reids.dir/build.make CMakeFiles/reids.dir/src/hashtable.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/hashtable.cpp.s
 .PHONY : src/hashtable.cpp.s
+
+src/main.o: src/main.cpp.o
+.PHONY : src/main.o
+
+# target to build an object file
+src/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
+
+src/main.i: src/main.cpp.i
+.PHONY : src/main.i
+
+# target to preprocess a source file
+src/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
+
+src/main.s: src/main.cpp.s
+.PHONY : src/main.s
+
+# target to generate assembly for a file
+src/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
 
 src/zset.o: src/zset.cpp.o
 .PHONY : src/zset.o
 
 # target to build an object file
 src/zset.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/reids.dir/build.make CMakeFiles/reids.dir/src/zset.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/zset.cpp.o
 .PHONY : src/zset.cpp.o
 
 src/zset.i: src/zset.cpp.i
@@ -190,7 +214,7 @@ src/zset.i: src/zset.cpp.i
 
 # target to preprocess a source file
 src/zset.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/reids.dir/build.make CMakeFiles/reids.dir/src/zset.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/zset.cpp.i
 .PHONY : src/zset.cpp.i
 
 src/zset.s: src/zset.cpp.s
@@ -198,7 +222,7 @@ src/zset.s: src/zset.cpp.s
 
 # target to generate assembly for a file
 src/zset.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/reids.dir/build.make CMakeFiles/reids.dir/src/zset.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/zset.cpp.s
 .PHONY : src/zset.cpp.s
 
 # Help Target
@@ -209,13 +233,16 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... reids"
+	@echo "... app"
 	@echo "... src/AVL.o"
 	@echo "... src/AVL.i"
 	@echo "... src/AVL.s"
 	@echo "... src/hashtable.o"
 	@echo "... src/hashtable.i"
 	@echo "... src/hashtable.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
 	@echo "... src/zset.o"
 	@echo "... src/zset.i"
 	@echo "... src/zset.s"

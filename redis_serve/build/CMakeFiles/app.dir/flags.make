@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/error/viscode/redis_serve/include
+CXX_INCLUDES = -I/home/error/gits/easy_redis/redis_serve/include
 
-CXX_FLAGS = -std=gnu++14
+CXX_FLAGS = -g -std=gnu++14
 

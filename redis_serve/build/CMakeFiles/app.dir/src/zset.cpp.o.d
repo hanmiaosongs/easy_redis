@@ -1,6 +1,6 @@
 CMakeFiles/app.dir/src/zset.cpp.o: \
- /home/error/viscode/redis_serve/src/zset.cpp /usr/include/stdc-predef.h \
- /usr/include/string.h \
+ /home/error/gits/easy_redis/redis_serve/src/zset.cpp \
+ /usr/include/stdc-predef.h /usr/include/string.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
@@ -48,10 +48,10 @@ CMakeFiles/app.dir/src/zset.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h /usr/include/alloca.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
  /usr/include/c++/11/bits/std_abs.h \
- /home/error/viscode/redis_serve/include/zset.h \
- /home/error/viscode/redis_serve/include/common.h \
+ /home/error/gits/easy_redis/redis_serve/include/zset.h \
+ /home/error/gits/easy_redis/redis_serve/include/common.h \
  /usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/wchar.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
- /home/error/viscode/redis_serve/include/AVL.h \
- /home/error/viscode/redis_serve/include/hashtable.h
+ /home/error/gits/easy_redis/redis_serve/include/AVL.h \
+ /home/error/gits/easy_redis/redis_serve/include/hashtable.h

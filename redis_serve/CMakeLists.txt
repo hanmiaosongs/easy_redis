@@ -4,13 +4,12 @@ project(redis_server)
 # set the path to head files
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
-set(home /home/error/viscode/redis_serve)
-set(EXECUTABLE_OUTPUT_PATH ${home})
+set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR})
 set(CMAKE_CXX_STANDARD 14)
 
-# aux_source_directory(${PROJECT_SOURCE_DIR}/src source_list)          # PROJECT_SOURCE_DIR => the loc of CMakeLists.txt
-# file(GLOB source_list ${home}/src/*.cpp)
-# add_executable(app ${source_list})
+#aux_source_directory(${PROJECT_SOURCE_DIR}/src source_list)          # PROJECT_SOURCE_DIR => the loc of CMakeLists.txt
+file(GLOB source_list ${PROJECT_SOURCE_DIR}/src/*.cpp)
+add_executable(app ${source_list})
 
 
 # use of static lib

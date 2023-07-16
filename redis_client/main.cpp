@@ -14,6 +14,7 @@
 #include<vector>
 #include<assert.h>
 #include<iostream>
+#include"common.h"
 
 #define PORT "3490"
 #define MAXDATASIZE 100

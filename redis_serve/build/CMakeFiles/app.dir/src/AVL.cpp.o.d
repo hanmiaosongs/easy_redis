@@ -1,6 +1,7 @@
 CMakeFiles/app.dir/src/AVL.cpp.o: \
- /home/error/viscode/redis_serve/src/AVL.cpp /usr/include/stdc-predef.h \
- /home/error/viscode/redis_serve/include/AVL.h \
+ /home/error/gits/easy_redis/redis_serve/src/AVL.cpp \
+ /usr/include/stdc-predef.h \
+ /home/error/gits/easy_redis/redis_serve/include/AVL.h \
  /usr/include/c++/11/stdlib.h /usr/include/c++/11/cstdlib \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \

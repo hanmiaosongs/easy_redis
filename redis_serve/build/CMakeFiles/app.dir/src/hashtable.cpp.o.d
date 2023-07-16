@@ -1,5 +1,5 @@
 CMakeFiles/app.dir/src/hashtable.cpp.o: \
- /home/error/viscode/redis_serve/src/hashtable.cpp \
+ /home/error/gits/easy_redis/redis_serve/src/hashtable.cpp \
  /usr/include/stdc-predef.h /usr/include/stdio.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -56,7 +56,7 @@ CMakeFiles/app.dir/src/hashtable.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h /usr/include/alloca.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
  /usr/include/c++/11/bits/std_abs.h \
- /home/error/viscode/redis_serve/include/hashtable.h \
+ /home/error/gits/easy_redis/redis_serve/include/hashtable.h \
  /usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/wchar.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h

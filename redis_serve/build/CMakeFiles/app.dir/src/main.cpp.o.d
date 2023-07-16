@@ -1,6 +1,6 @@
 CMakeFiles/app.dir/src/main.cpp.o: \
- /home/error/viscode/redis_serve/src/main.cpp /usr/include/stdc-predef.h \
- /usr/include/stdio.h \
+ /home/error/gits/easy_redis/redis_serve/src/main.cpp \
+ /usr/include/stdc-predef.h /usr/include/stdio.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
@@ -216,8 +216,8 @@ CMakeFiles/app.dir/src/main.cpp.o: \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc \
- /home/error/viscode/redis_serve/include/zset.h \
- /home/error/viscode/redis_serve/include/common.h \
+ /home/error/gits/easy_redis/redis_serve/include/zset.h \
+ /home/error/gits/easy_redis/redis_serve/include/common.h \
  /usr/include/c++/11/stdlib.h \
- /home/error/viscode/redis_serve/include/AVL.h \
- /home/error/viscode/redis_serve/include/hashtable.h
+ /home/error/gits/easy_redis/redis_serve/include/AVL.h \
+ /home/error/gits/easy_redis/redis_serve/include/hashtable.h
