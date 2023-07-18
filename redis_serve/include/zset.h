@@ -3,13 +3,13 @@
 #include "hashtable.h"
 
 struct Z_set{
-    AVL_node* tree;
+    AVL_node* tree = NULL;
     H_map hmap;
 };
 
 struct Z_node{
-    AVL_node tree;
     H_node hmap;
+    AVL_node tree;
     double score;
     size_t len = 0;
     char name[0];

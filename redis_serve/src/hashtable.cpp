@@ -21,8 +21,6 @@ static int32_t ht_init(H_table* tb, size_t n){
 
 int32_t hm_init(size_t n, H_map* hmap){
     hmap->resizing_pos = 0;
-    hmap->tb_2 = NULL;
-    hmap->tb_1 = new(H_table);
     if(ht_init(hmap->tb_1, n)) return -1;
     return 0;
 }
@@ -44,7 +42,7 @@ static H_node* ht_detect(H_table* ht, H_node** from){
 static int32_t do_resize(H_map* hmap){
     size_t lc = hmap->resizing_pos;
     H_node** from = &(hmap->tb_2->h_tb[lc]), *now;
-    for(int i = 0; i < one_resize && hmap->tb_2->tb_size; i++){
+    for(int i = 0; (i < one_resize) && hmap->tb_2->tb_size; i++){
         while(!(*from)){
             lc += 1;
             from = &(hmap->tb_2->h_tb[lc]);
@@ -56,8 +54,8 @@ static int32_t do_resize(H_map* hmap){
     if(hmap->tb_2->tb_size == 0){
         hmap->resizing_pos = 0;
         free(hmap->tb_2->h_tb);
-        free(hmap->tb_2);
-        hmap->tb_2 = NULL;
+        hmap->tb_2->code_mask = 0;
+        hmap->tb_2->tb_size = 0;
     }
     else hmap->resizing_pos = lc;
 
@@ -65,7 +63,9 @@ static int32_t do_resize(H_map* hmap){
 }
 
 static int32_t start_resizing(H_map* hmap){
-    hmap->tb_2 = hmap->tb_1;
+    hmap->tb_2->h_tb = hmap->tb_1->h_tb;
+    hmap->tb_2->code_mask = hmap->tb_1->code_mask;
+    hmap->tb_2->tb_size = hmap->tb_2->tb_size;
     size_t nx_size = (hmap->tb_2->code_mask + 1) * 2;
     if(ht_init(hmap->tb_1, nx_size)) return -1;
     hmap->resizing_pos = 0;
@@ -75,7 +75,7 @@ static int32_t start_resizing(H_map* hmap){
 
 void hm_insert(H_map* hmap, H_node* key){
     ht_insert(hmap->tb_1, key);
-    if(hmap->tb_2 != NULL) do_resize(hmap);
+    if(hmap->tb_2->code_mask) do_resize(hmap);
     else if(hmap->tb_1->code_mask < hmap->tb_1->tb_size){
         if(start_resizing(hmap)){
             msg("calloc error!");
@@ -85,7 +85,7 @@ void hm_insert(H_map* hmap, H_node* key){
 }
 
 static H_node* ht_find(H_table* ht, H_node* key, bool (*cmp)(H_node*, H_node*)){
-    size_t lc = key->code & ht->code_mask;
+    size_t lc = (key->code) & (ht->code_mask);
     H_node* now = ht->h_tb[lc];
     while(now){
         if(cmp(now, key)){
@@ -97,11 +97,11 @@ static H_node* ht_find(H_table* ht, H_node* key, bool (*cmp)(H_node*, H_node*)){
 }
 
 H_node* hm_lookup(H_map* hmap, H_node* key, bool(*cmp)(H_node*, H_node*)){
-    if(hmap->tb_2 != NULL) do_resize(hmap);
+    if(hmap->tb_2->code_mask) do_resize(hmap);
 
     H_node* now = ht_find(hmap->tb_1, key, cmp);
     if(now) return now;
-    else if(hmap->tb_2){
+    else if(hmap->tb_2->code_mask){
         now = ht_find(hmap->tb_2, key, cmp);
     }
     return now;
@@ -124,11 +124,11 @@ static H_node* ht_del(H_table* ht, H_node* key, bool(*cmp)(H_node*, H_node*)){
 }
 
 H_node* hm_pop(H_map* hmap, H_node* key, bool(*cmp)(H_node*, H_node*)){
-    if(hmap->tb_2 != NULL) do_resize(hmap);
+    if(hmap->tb_2->code_mask) do_resize(hmap);
     
     H_node* res;
     if((res = ht_del(hmap->tb_1, key, cmp)) != NULL) return res;
-    if(hmap->tb_2 != NULL && (res = ht_del(hmap->tb_2, key, cmp)) != NULL) return res;
+    if(hmap->tb_2->code_mask && (res = ht_del(hmap->tb_2, key, cmp)) != NULL) return res;
     return NULL;
 }
 

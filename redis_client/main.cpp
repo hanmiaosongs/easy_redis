@@ -372,6 +372,7 @@ int main(){
 
     if(do_set(sockfd, "name", "miao han")) goto GONE;
     if(do_zadd(sockfd, "nn", "first", 1.0));
+    if(do_zadd(sockfd, "nn", "first", 1.0));
     if(do_zadd(sockfd, "nn", "second", 2.0));
     if(do_zadd(sockfd, "nn", "third", 3.0));
     if(do_zadd(sockfd, "nn", "4th", 4.0));

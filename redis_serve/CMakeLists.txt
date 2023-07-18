@@ -4,8 +4,12 @@ project(redis_server)
 # set the path to head files
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
+set(CMAKE_BUILD_TYPE "Debug")
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR})
 set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O0 -Wall -g2 -ggdb")
+set(CMAKE_CXX_FLAGS_RELEASE "$ENV{CXXFLAGS} -O3 -Wall")
+
 
 #aux_source_directory(${PROJECT_SOURCE_DIR}/src source_list)          # PROJECT_SOURCE_DIR => the loc of CMakeLists.txt
 file(GLOB source_list ${PROJECT_SOURCE_DIR}/src/*.cpp)

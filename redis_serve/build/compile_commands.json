@@ -1,22 +1,22 @@
 [
 {
   "directory": "/home/error/gits/easy_redis/redis_serve/build",
-  "command": "/usr/bin/c++  -I/home/error/gits/easy_redis/redis_serve/include -g -std=gnu++14 -o CMakeFiles/app.dir/src/AVL.cpp.o -c /home/error/gits/easy_redis/redis_serve/src/AVL.cpp",
+  "command": "/usr/bin/c++  -I/home/error/gits/easy_redis/redis_serve/include  -O0 -Wall -g2 -ggdb -std=gnu++14 -o CMakeFiles/app.dir/src/AVL.cpp.o -c /home/error/gits/easy_redis/redis_serve/src/AVL.cpp",
   "file": "/home/error/gits/easy_redis/redis_serve/src/AVL.cpp"
 },
 {
   "directory": "/home/error/gits/easy_redis/redis_serve/build",
-  "command": "/usr/bin/c++  -I/home/error/gits/easy_redis/redis_serve/include -g -std=gnu++14 -o CMakeFiles/app.dir/src/hashtable.cpp.o -c /home/error/gits/easy_redis/redis_serve/src/hashtable.cpp",
+  "command": "/usr/bin/c++  -I/home/error/gits/easy_redis/redis_serve/include  -O0 -Wall -g2 -ggdb -std=gnu++14 -o CMakeFiles/app.dir/src/hashtable.cpp.o -c /home/error/gits/easy_redis/redis_serve/src/hashtable.cpp",
   "file": "/home/error/gits/easy_redis/redis_serve/src/hashtable.cpp"
 },
 {
   "directory": "/home/error/gits/easy_redis/redis_serve/build",
-  "command": "/usr/bin/c++  -I/home/error/gits/easy_redis/redis_serve/include -g -std=gnu++14 -o CMakeFiles/app.dir/src/main.cpp.o -c /home/error/gits/easy_redis/redis_serve/src/main.cpp",
+  "command": "/usr/bin/c++  -I/home/error/gits/easy_redis/redis_serve/include  -O0 -Wall -g2 -ggdb -std=gnu++14 -o CMakeFiles/app.dir/src/main.cpp.o -c /home/error/gits/easy_redis/redis_serve/src/main.cpp",
   "file": "/home/error/gits/easy_redis/redis_serve/src/main.cpp"
 },
 {
   "directory": "/home/error/gits/easy_redis/redis_serve/build",
-  "command": "/usr/bin/c++  -I/home/error/gits/easy_redis/redis_serve/include -g -std=gnu++14 -o CMakeFiles/app.dir/src/zset.cpp.o -c /home/error/gits/easy_redis/redis_serve/src/zset.cpp",
+  "command": "/usr/bin/c++  -I/home/error/gits/easy_redis/redis_serve/include  -O0 -Wall -g2 -ggdb -std=gnu++14 -o CMakeFiles/app.dir/src/zset.cpp.o -c /home/error/gits/easy_redis/redis_serve/src/zset.cpp",
   "file": "/home/error/gits/easy_redis/redis_serve/src/zset.cpp"
 }
 ]

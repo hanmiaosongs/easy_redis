@@ -272,21 +272,13 @@ static bool expect_zset(std::string &s, Entry** entry, std::string &out){
     return true;
 }
 
-static int32_t do_zscore(std::vector<std::string> &cmds, std::string &out){
-    Entry key(str_hash((uint8_t*)cmds[1].data(), (size_t)cmds[1].size()), cmds[1]);
-    H_node* node = hm_lookup(&(g_data.hmap), &(key.node), cmp);
-    if(node == NULL){
-        out_err(out, ERR_ARG, "not found");
-        return -1;
-    }
-    Entry* entry = container_of(node, Entry, node);
-    if(entry->type != T_ZSET){
-        out_err(out, ERR_TYPE, "expect zset!");
-        return -1;
+static void do_zscore(std::vector<std::string> &cmds, std::string &out){
+    Entry *entry;
+    if(!expect_zset(cmds[1], &entry, out)){
+        return out_nil(out);
     }
     Z_node* znode = zset_find(entry->zset, (char*)cmds[2].data(), cmds[2].size());
-    out_dbl(out, znode->score);
-    return 0;
+    return znode == NULL ? out_nil(out) : out_dbl(out, znode->score);
 }
 
 static int32_t do_zadd(std::vector<std::string> &cmds, std::string &out){
@@ -304,6 +296,8 @@ static int32_t do_zadd(std::vector<std::string> &cmds, std::string &out){
         entry->key = cmds[1];
         entry->type = T_ZSET;
         entry->node.code = code;
+        entry->zset = new Z_set;
+        hm_init(4, &(entry->zset->hmap));
         hm_insert(&(g_data.hmap), &(entry->node));
     }
     else{
@@ -336,15 +330,7 @@ static int32_t do_zquery(std::vector<std::string> &cmds, std::string &out){
         return -1;
     }
 
-    uint32_t code = str_hash((uint8_t*)cmds[1].data(), cmds[1].size());
-    Entry key(code, cmds[1]);
-    H_node* node = hm_lookup(&g_data.hmap, &key.node, cmp);
-    if(!node){
-        out_err(out, ERR_ARG, "not found zset");
-        return -1;
-    }
-    entry = container_of(node, Entry, node);
-    if(entry->type != T_ZSET){
+    if(!expect_zset(cmds[1], &entry, out)){
         out_err(out, ERR_TYPE, "expect zset");
         return -1;
     }
@@ -362,24 +348,16 @@ static int32_t do_zquery(std::vector<std::string> &cmds, std::string &out){
     return 0;
 }
 
-static int32_t do_zrem(std::string &out, std::vector<std::string> &cmds){
+static void do_zrem(std::string &out, std::vector<std::string> &cmds){
     Entry *entry;
-    uint32_t code = str_hash((uint8_t*)cmds[1].data(), cmds[1].size());
-    Entry key(code, cmds[1]);
-    H_node* node = hm_lookup(&g_data.hmap, &key.node, cmp);
-    if(!node){
-        out_err(out, ERR_UNKNOW, "not found");
-        return -1;
+
+    if(!expect_zset(cmds[1], &entry, out)){
+        return out_int(out, 0);
     }
-    entry = container_of(node, Entry, node);
-    if(entry->type != T_ZSET){
-        out_err(out, ERR_ARG, "expect zset");
-        return -1;
-    }
+
     Z_node* znode = zset_pop(entry->zset, (char*)cmds[2].data(), cmds[2].size());
     free(znode);
-    out_int(out, 1);
-    return 0;
+    return out_int(out, 1);
 }
 
 static bool cmd_is(std::string &s, const char* cmd){
@@ -403,7 +381,7 @@ static int32_t do_one_request(uint8_t* data, uint32_t len, std::string &out){
         if(do_del(cmds, out)) return -1;
     }
     else if(cmd_is(cmds[0], "zrem") && cmds.size() == 3){
-        if(do_zrem(out, cmds)) return -1;
+        do_zrem(out, cmds);
     }
     else if(cmd_is(cmds[0], "zquery") && cmds.size() == 6){
         if(do_zquery(cmds, out)) return -1;
@@ -412,7 +390,7 @@ static int32_t do_one_request(uint8_t* data, uint32_t len, std::string &out){
         if(do_zadd(cmds, out)) return -1;
     }
     else if(cmd_is(cmds[0], "zscore") && cmds.size() == 3){
-        if(do_zscore(cmds, out)) return -1;
+        do_zscore(cmds, out);
     }
     else if(cmd_is(cmds[0], "keys") && cmds.size() == 1){
         do_keys(out);
