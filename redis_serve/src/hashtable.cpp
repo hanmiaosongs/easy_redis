@@ -42,7 +42,7 @@ static H_node* ht_detect(H_table* ht, H_node** from){
 static int32_t do_resize(H_map* hmap){
     size_t lc = hmap->resizing_pos;
     H_node** from = &(hmap->tb_2->h_tb[lc]), *now;
-    for(int i = 0; (i < one_resize) && hmap->tb_2->tb_size; i++){
+    for(int i = 0; (i < one_resize) && hmap->tb_2->tb_size > 0; i++){
         while(!(*from)){
             lc += 1;
             from = &(hmap->tb_2->h_tb[lc]);
@@ -65,7 +65,7 @@ static int32_t do_resize(H_map* hmap){
 static int32_t start_resizing(H_map* hmap){
     hmap->tb_2->h_tb = hmap->tb_1->h_tb;
     hmap->tb_2->code_mask = hmap->tb_1->code_mask;
-    hmap->tb_2->tb_size = hmap->tb_2->tb_size;
+    hmap->tb_2->tb_size = hmap->tb_1->tb_size;
     size_t nx_size = (hmap->tb_2->code_mask + 1) * 2;
     if(ht_init(hmap->tb_1, nx_size)) return -1;
     hmap->resizing_pos = 0;

@@ -60,6 +60,8 @@ CMakeFiles/app.dir/src/AVL.cpp.o
  /usr/include/stdint.h
  /usr/include/x86_64-linux-gnu/bits/wchar.h
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h
+ /usr/include/string.h
+ /usr/include/strings.h
 
 CMakeFiles/app.dir/src/hashtable.cpp.o
  /home/error/gits/easy_redis/redis_serve/src/hashtable.cpp

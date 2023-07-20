@@ -89,7 +89,7 @@ void set_fd_nb(int connfd){
 bool cmp(H_node* lhn, H_node* rhn){
     Entry* le = container_of(lhn, Entry, node);
     Entry* re = container_of(rhn, Entry, node);
-    return lhn->code == rhn->code && le->key == re->key;
+    return lhn->code == rhn->code && strcmp(le->key.c_str(), re->key.c_str()) == 0;
 }
 
 uint32_t get_cmds(uint8_t* data, uint32_t len, std::vector<std::string> &cmds){
