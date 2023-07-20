@@ -1,4 +1,5 @@
 #include"AVL.h"
+#include<string.h>
 
 static uint32_t avl_depth(AVL_node* node){
     return node ? node->depth : 0;
@@ -79,23 +80,31 @@ AVL_node* avl_del(AVL_node* node){
         if(node->parent){
             if(node == node->parent->left) node->parent->left = node->right;
             else node->parent->right = node->right;
+            node->right->parent = node->parent;
             return avl_fix(node->parent);
         }
-        else return node->right;
+        else{
+            node->right->parent = NULL;
+            return node->right;
+        }
     }
     else if(node->right == NULL){
         if(node->parent){
             if(node == node->parent->left) node->parent->left = node->left;
             else node->parent->right = node->left;
+            node->left->parent = node->parent;
             return avl_fix(node->parent);
         }
-        else return node->left;
+        else {
+            node->left->parent = NULL;
+            return node->left;
+        }
     }
     else{
         AVL_node* victom = node->right;
         while(victom->left) victom = victom->left;
         AVL_node* root = avl_del(victom);
-        *victom = *node;
+        memcpy(victom, node, sizeof(AVL_node));
         node->left->parent = victom;
         if(node->right) node->right->parent = victom;
         if(node->parent){
