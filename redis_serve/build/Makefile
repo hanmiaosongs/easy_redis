@@ -153,6 +153,30 @@ src/AVL.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/AVL.cpp.s
 .PHONY : src/AVL.cpp.s
 
+src/Timer.o: src/Timer.cpp.o
+.PHONY : src/Timer.o
+
+# target to build an object file
+src/Timer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/Timer.cpp.o
+.PHONY : src/Timer.cpp.o
+
+src/Timer.i: src/Timer.cpp.i
+.PHONY : src/Timer.i
+
+# target to preprocess a source file
+src/Timer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/Timer.cpp.i
+.PHONY : src/Timer.cpp.i
+
+src/Timer.s: src/Timer.cpp.s
+.PHONY : src/Timer.s
+
+# target to generate assembly for a file
+src/Timer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/Timer.cpp.s
+.PHONY : src/Timer.cpp.s
+
 src/hashtable.o: src/hashtable.cpp.o
 .PHONY : src/hashtable.o
 
@@ -237,6 +261,9 @@ help:
 	@echo "... src/AVL.o"
 	@echo "... src/AVL.i"
 	@echo "... src/AVL.s"
+	@echo "... src/Timer.o"
+	@echo "... src/Timer.i"
+	@echo "... src/Timer.s"
 	@echo "... src/hashtable.o"
 	@echo "... src/hashtable.i"
 	@echo "... src/hashtable.s"

@@ -277,7 +277,7 @@ int32_t do_zadd(int connfd, const char* ke, const char* name, double sc){
     uint32_t tt = 4, wlen = 4, res = k_max_msg;
     uint8_t wbuf[k_max_msg+4] = {0}; char dd[30] = {0};
     memcpy(wbuf, &wlen, 4);
-    sprintf(dd, "%.6lf", sc); printf("%s\n", dd);
+    sprintf(dd, "%.6lf", sc);
     if(put_cmd(&wbuf[tt], (uint8_t*)"zadd", (uint32_t)4, res)) return -1;
     tt += 8;
     if(put_cmd(&wbuf[tt], (uint8_t*)ke, strlen(ke), res)) return -1;

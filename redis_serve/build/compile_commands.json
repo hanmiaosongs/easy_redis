@@ -6,6 +6,11 @@
 },
 {
   "directory": "/home/error/gits/easy_redis/redis_serve/build",
+  "command": "/usr/bin/c++  -I/home/error/gits/easy_redis/redis_serve/include  -O0 -Wall -g2 -ggdb -std=gnu++14 -o CMakeFiles/app.dir/src/Timer.cpp.o -c /home/error/gits/easy_redis/redis_serve/src/Timer.cpp",
+  "file": "/home/error/gits/easy_redis/redis_serve/src/Timer.cpp"
+},
+{
+  "directory": "/home/error/gits/easy_redis/redis_serve/build",
   "command": "/usr/bin/c++  -I/home/error/gits/easy_redis/redis_serve/include  -O0 -Wall -g2 -ggdb -std=gnu++14 -o CMakeFiles/app.dir/src/hashtable.cpp.o -c /home/error/gits/easy_redis/redis_serve/src/hashtable.cpp",
   "file": "/home/error/gits/easy_redis/redis_serve/src/hashtable.cpp"
 },

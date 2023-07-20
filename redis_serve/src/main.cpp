@@ -17,7 +17,7 @@
 #include<unordered_map>
 #include<string>
 #include<iostream>
-#include"zset.h"
+#include"Timer.h"
 
 #define PORT "3490"
 #define BACKLOG 10
@@ -26,6 +26,8 @@
 
 struct {
     H_map hmap;
+    std::vector<Conn*> fd2conn;
+    DList timer_list;
 }g_data;
 
 enum{
@@ -54,13 +56,6 @@ struct Entry{
         node.code = cd;
         key = ke;
     }
-};
-
-struct Conn{
-    int connfd;
-    char rbuf[k_max_msg + 4], wbuf[k_max_msg + 4];
-    uint32_t state;
-    size_t rbuf_sz, wbuf_sz, wbuf_sent;
 };
 
 void msg(const char* msg){
@@ -94,22 +89,18 @@ bool cmp(H_node* lhn, H_node* rhn){
 
 uint32_t get_cmds(uint8_t* data, uint32_t len, std::vector<std::string> &cmds){
     char a[k_max_msg + 1]; uint32_t cmd_len, nstr;
-    printf("*%u*", len);
     if(len < 4) return -1;
     memcpy(&nstr, data, 4);
     len -= 4; data += 4;
     for(int i = 0; i < nstr; i++){
         memcpy(&cmd_len, data, 4);
-        printf("**%u**", cmd_len);
         if(len < 4 + cmd_len) return -1;
         memcpy(&a, &data[4], cmd_len);
         a[cmd_len] = '\0';
         cmds.emplace_back(a);
         len -= cmd_len + 4;
         data += cmd_len + 4;
-        printf("%s  ", a);
     }
-    printf("\n");
     if(len) return -1;
     return 0;
 }
@@ -437,6 +428,8 @@ static int32_t accept_new_fd(std::vector<Conn*> &fd2conn, int sockfd){
     conn->connfd = new_fd;
     conn->state = STATE_REQ;
     conn->rbuf_sz = conn->wbuf_sent = conn->wbuf_sz = 0;
+    conn->idle_start = get_monotonic_us();
+    dlist_insert_before(&(g_data.timer_list), &(conn->idle_list));
     conn_put(fd2conn, conn);
     return 0;
 }
@@ -548,11 +541,31 @@ void state_req(Conn* conn){
 }
 
 void connection_io(Conn* conn){
+    conn->idle_start = get_monotonic_us();
+    dlist_detach(&(conn->idle_list));
+    dlist_insert_before(&(g_data.timer_list), &(conn->idle_list));
     if(conn->state == STATE_REQ){
         state_req(conn);
     }
     else if(conn->state == STATE_RES){
         state_res(conn);
+    }
+}
+
+void conn_done(Conn* conn){
+    g_data.fd2conn[conn->connfd] = NULL;
+    close(conn->connfd);
+    dlist_detach(&(conn->idle_list));
+    free(conn);
+}
+
+void process_timer(DList *node){
+    uint64_t now_us = get_monotonic_us();
+    Conn *conn;
+    while(!dlist_empty(node)){
+        if(next_timer_ms(node->next, &conn)) break;
+        printf("removing idle connection: %d\n", conn->connfd);
+        conn_done(conn);
     }
 }
 
@@ -566,8 +579,8 @@ int main(){
     hints.ai_flags = AI_PASSIVE;
     hints.ai_socktype = SOCK_STREAM;
 
-    std::vector<Conn*> fd2conn;
     std::vector<struct pollfd> poll_args;
+    g_data.timer_list.next = g_data.timer_list.prev = &(g_data.timer_list);
 
     if((status = getaddrinfo(NULL, PORT, &hints, &serveinfo)) != 0){
         fprintf(stderr, "getaddrinfo error: %s\n", gai_strerror(status));
@@ -612,7 +625,7 @@ int main(){
 
         struct pollfd pfd = {sockfd, POLL_IN, 0};
         poll_args.push_back(pfd);
-        for(Conn* conn : fd2conn){
+        for(Conn* conn : g_data.fd2conn){
             if(!conn) continue;
             struct pollfd pfd = {};
             pfd.fd = conn->connfd;
@@ -628,18 +641,18 @@ int main(){
         
         for(size_t i = 1; i < poll_args.size(); i++){
             if(poll_args[i].revents) {
-                Conn *conn = fd2conn[poll_args[i].fd];
+                Conn *conn = g_data.fd2conn[poll_args[i].fd];
                 connection_io(conn);
                 if(conn->state == STATE_END){
-                    fd2conn[conn->connfd] = NULL;
-                    (void)close(conn->connfd);
-                    free(conn);
+                    conn_done(conn);
                 }
             }
         }
 
+        process_timer(&(g_data.timer_list));
+
         if(poll_args[0].revents){
-            (void)accept_new_fd(fd2conn, sockfd);
+            (void)accept_new_fd(g_data.fd2conn, sockfd);
         }
     }
     return 0;

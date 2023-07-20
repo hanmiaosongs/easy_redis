@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "../app.pdb"
   "CMakeFiles/app.dir/src/AVL.cpp.o"
   "CMakeFiles/app.dir/src/AVL.cpp.o.d"
+  "CMakeFiles/app.dir/src/Timer.cpp.o"
+  "CMakeFiles/app.dir/src/Timer.cpp.o.d"
   "CMakeFiles/app.dir/src/hashtable.cpp.o"
   "CMakeFiles/app.dir/src/hashtable.cpp.o.d"
   "CMakeFiles/app.dir/src/main.cpp.o"

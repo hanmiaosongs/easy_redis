@@ -83,10 +83,24 @@ CMakeFiles/app.dir/src/AVL.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/app.dir/src/AVL.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/error/gits/easy_redis/redis_serve/src/AVL.cpp -o CMakeFiles/app.dir/src/AVL.cpp.s
 
+CMakeFiles/app.dir/src/Timer.cpp.o: CMakeFiles/app.dir/flags.make
+CMakeFiles/app.dir/src/Timer.cpp.o: ../src/Timer.cpp
+CMakeFiles/app.dir/src/Timer.cpp.o: CMakeFiles/app.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/error/gits/easy_redis/redis_serve/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/app.dir/src/Timer.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/app.dir/src/Timer.cpp.o -MF CMakeFiles/app.dir/src/Timer.cpp.o.d -o CMakeFiles/app.dir/src/Timer.cpp.o -c /home/error/gits/easy_redis/redis_serve/src/Timer.cpp
+
+CMakeFiles/app.dir/src/Timer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/app.dir/src/Timer.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/error/gits/easy_redis/redis_serve/src/Timer.cpp > CMakeFiles/app.dir/src/Timer.cpp.i
+
+CMakeFiles/app.dir/src/Timer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/app.dir/src/Timer.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/error/gits/easy_redis/redis_serve/src/Timer.cpp -o CMakeFiles/app.dir/src/Timer.cpp.s
+
 CMakeFiles/app.dir/src/hashtable.cpp.o: CMakeFiles/app.dir/flags.make
 CMakeFiles/app.dir/src/hashtable.cpp.o: ../src/hashtable.cpp
 CMakeFiles/app.dir/src/hashtable.cpp.o: CMakeFiles/app.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/error/gits/easy_redis/redis_serve/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/app.dir/src/hashtable.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/error/gits/easy_redis/redis_serve/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/app.dir/src/hashtable.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/app.dir/src/hashtable.cpp.o -MF CMakeFiles/app.dir/src/hashtable.cpp.o.d -o CMakeFiles/app.dir/src/hashtable.cpp.o -c /home/error/gits/easy_redis/redis_serve/src/hashtable.cpp
 
 CMakeFiles/app.dir/src/hashtable.cpp.i: cmake_force
@@ -100,7 +114,7 @@ CMakeFiles/app.dir/src/hashtable.cpp.s: cmake_force
 CMakeFiles/app.dir/src/main.cpp.o: CMakeFiles/app.dir/flags.make
 CMakeFiles/app.dir/src/main.cpp.o: ../src/main.cpp
 CMakeFiles/app.dir/src/main.cpp.o: CMakeFiles/app.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/error/gits/easy_redis/redis_serve/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/app.dir/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/error/gits/easy_redis/redis_serve/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/app.dir/src/main.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/app.dir/src/main.cpp.o -MF CMakeFiles/app.dir/src/main.cpp.o.d -o CMakeFiles/app.dir/src/main.cpp.o -c /home/error/gits/easy_redis/redis_serve/src/main.cpp
 
 CMakeFiles/app.dir/src/main.cpp.i: cmake_force
@@ -114,7 +128,7 @@ CMakeFiles/app.dir/src/main.cpp.s: cmake_force
 CMakeFiles/app.dir/src/zset.cpp.o: CMakeFiles/app.dir/flags.make
 CMakeFiles/app.dir/src/zset.cpp.o: ../src/zset.cpp
 CMakeFiles/app.dir/src/zset.cpp.o: CMakeFiles/app.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/error/gits/easy_redis/redis_serve/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/app.dir/src/zset.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/error/gits/easy_redis/redis_serve/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/app.dir/src/zset.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/app.dir/src/zset.cpp.o -MF CMakeFiles/app.dir/src/zset.cpp.o.d -o CMakeFiles/app.dir/src/zset.cpp.o -c /home/error/gits/easy_redis/redis_serve/src/zset.cpp
 
 CMakeFiles/app.dir/src/zset.cpp.i: cmake_force
@@ -128,6 +142,7 @@ CMakeFiles/app.dir/src/zset.cpp.s: cmake_force
 # Object files for target app
 app_OBJECTS = \
 "CMakeFiles/app.dir/src/AVL.cpp.o" \
+"CMakeFiles/app.dir/src/Timer.cpp.o" \
 "CMakeFiles/app.dir/src/hashtable.cpp.o" \
 "CMakeFiles/app.dir/src/main.cpp.o" \
 "CMakeFiles/app.dir/src/zset.cpp.o"
@@ -136,12 +151,13 @@ app_OBJECTS = \
 app_EXTERNAL_OBJECTS =
 
 ../app: CMakeFiles/app.dir/src/AVL.cpp.o
+../app: CMakeFiles/app.dir/src/Timer.cpp.o
 ../app: CMakeFiles/app.dir/src/hashtable.cpp.o
 ../app: CMakeFiles/app.dir/src/main.cpp.o
 ../app: CMakeFiles/app.dir/src/zset.cpp.o
 ../app: CMakeFiles/app.dir/build.make
 ../app: CMakeFiles/app.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/error/gits/easy_redis/redis_serve/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable ../app"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/error/gits/easy_redis/redis_serve/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable ../app"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/app.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
