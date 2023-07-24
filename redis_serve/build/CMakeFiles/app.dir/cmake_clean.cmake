@@ -9,6 +9,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/app.dir/src/hashtable.cpp.o.d"
   "CMakeFiles/app.dir/src/main.cpp.o"
   "CMakeFiles/app.dir/src/main.cpp.o.d"
+  "CMakeFiles/app.dir/src/thread_pool.cpp.o"
+  "CMakeFiles/app.dir/src/thread_pool.cpp.o.d"
   "CMakeFiles/app.dir/src/zset.cpp.o"
   "CMakeFiles/app.dir/src/zset.cpp.o.d"
 )

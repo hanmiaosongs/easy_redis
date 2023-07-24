@@ -19,6 +19,10 @@ static int32_t ht_init(H_table* tb, size_t n){
     return 0;
 }
 
+size_t hm_size(H_map* map){
+    return map->tb_1->tb_size + map->tb_2->tb_size;
+}
+
 int32_t hm_init(size_t n, H_map* hmap){
     hmap->resizing_pos = 0;
     if(ht_init(hmap->tb_1, n)) return -1;

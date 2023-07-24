@@ -18,6 +18,7 @@
 #include<string>
 #include<iostream>
 #include"Timer.h"
+#include"thread_pool.h"
 
 #define PORT "3490"
 #define BACKLOG 10
@@ -28,6 +29,7 @@ struct {
     H_map hmap;
     std::vector<Conn*> fd2conn;
     DList timer_list;
+    Thread_pool tp;
 }g_data;
 
 enum{
@@ -185,7 +187,29 @@ static int32_t do_get(std::vector<std::string> &cmds, std::string &out){
     return 0;
 }
 
+static void entry_del_async(void* args){
+    Entry* ent = (Entry *)args;
+
+    zset_dispose(ent->zset);
+    delete(ent->zset);
+    delete(ent);
+    return ;
+}
+
 static void entry_del(Entry* entry){
+    const size_t k_large_container_size = 10000;
+    bool big_size = false;
+    switch (entry->type)
+    {
+    case T_ZSET:
+        big_size = k_large_container_size < hm_size(&(entry->zset->hmap));
+        break;
+    }
+    if(big_size){
+        thread_pool_queue(&(g_data.tp), entry_del_async, (void *)entry);
+        return ;
+    }
+
     if(entry->type == T_ZSET){
         zset_dispose(entry->zset);
         delete(entry->zset);
@@ -581,6 +605,7 @@ int main(){
 
     std::vector<struct pollfd> poll_args;
     g_data.timer_list.next = g_data.timer_list.prev = &(g_data.timer_list);
+    thread_pool_init(&g_data.tp, 4);
 
     if((status = getaddrinfo(NULL, PORT, &hints, &serveinfo)) != 0){
         fprintf(stderr, "getaddrinfo error: %s\n", gai_strerror(status));

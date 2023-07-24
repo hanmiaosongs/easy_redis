@@ -21,6 +21,11 @@
 },
 {
   "directory": "/home/error/gits/easy_redis/redis_serve/build",
+  "command": "/usr/bin/c++  -I/home/error/gits/easy_redis/redis_serve/include  -O0 -Wall -g2 -ggdb -std=gnu++14 -o CMakeFiles/app.dir/src/thread_pool.cpp.o -c /home/error/gits/easy_redis/redis_serve/src/thread_pool.cpp",
+  "file": "/home/error/gits/easy_redis/redis_serve/src/thread_pool.cpp"
+},
+{
+  "directory": "/home/error/gits/easy_redis/redis_serve/build",
   "command": "/usr/bin/c++  -I/home/error/gits/easy_redis/redis_serve/include  -O0 -Wall -g2 -ggdb -std=gnu++14 -o CMakeFiles/app.dir/src/zset.cpp.o -c /home/error/gits/easy_redis/redis_serve/src/zset.cpp",
   "file": "/home/error/gits/easy_redis/redis_serve/src/zset.cpp"
 }

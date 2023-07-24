@@ -21,3 +21,4 @@ H_node* hm_pop(H_map* hmap, H_node* key, bool (*cmp)(H_node*, H_node*));
 void hm_insert(H_map *hmap, H_node* key);
 int32_t hm_init(size_t n, H_map* hmap);
 void hm_distroy(H_map* hmap);
+size_t hm_size(H_map* map);
